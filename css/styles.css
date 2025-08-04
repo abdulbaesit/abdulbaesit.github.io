@@ -1734,6 +1734,15 @@ html[data-theme="dark"] .course-item:hover {
     .content.is-small {
         text-align: left;
         font-size: 0.7rem;
+        text-indent: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        text-align: justify;
+        margin: 0 1rem;
+        padding: 0 0.5rem;
     }
 
     /* Container padding for mobile */
@@ -1776,11 +1785,13 @@ html[data-theme="dark"] .course-item:hover {
     .contact-mobile h3 {
         font-size: 1.5rem;
         margin-bottom: 0.75rem;
+        text-align: center;
     }
 
     .contact-mobile p {
         font-size: 1rem;
         margin-bottom: 1.5rem;
+        text-align: center;
     }
 
     .contact-intro {
@@ -1921,6 +1932,21 @@ html[data-theme="dark"] .course-item:hover {
     .title.has-text-primary.is-3 {
         text-align: left;
         font-size: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    /* Mobile name layout - Abdul to the left, Basit above */
+    .title.has-text-primary.is-3 .name-first {
+        font-size: 1.2rem;
+        align-self: flex-start;
+    }
+
+    .title.has-text-primary.is-3 .name-second {
+        font-size: 1.8rem;
+        align-self: flex-start;
     }
 
     .subtitle {
@@ -1969,11 +1995,13 @@ html[data-theme="dark"] .course-item:hover {
     .contact-mobile h3 {
         font-size: 1.3rem;
         margin-bottom: 0.6rem;
+        text-align: center;
     }
 
     .contact-mobile p {
         font-size: 0.9rem;
         margin-bottom: 1.2rem;
+        text-align: center;
     }
 
     .contact-intro {
@@ -2095,6 +2123,21 @@ html[data-theme="dark"] .course-item:hover {
 
     .title.has-text-primary.is-3 {
         text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    /* Mobile name layout - Abdul to the left, Basit above */
+    .title.has-text-primary.is-3 .name-first {
+        font-size: 1.1rem;
+        align-self: flex-start;
+    }
+
+    .title.has-text-primary.is-3 .name-second {
+        font-size: 1.6rem;
+        align-self: flex-start;
     }
 
     .subtitle {
@@ -2103,6 +2146,15 @@ html[data-theme="dark"] .course-item:hover {
 
     .content.is-small {
         text-align: left;
+        text-indent: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        text-align: justify;
+        margin: 0 1rem;
+        padding: 0 0.5rem;
     }
 
     .title.has-text-primary.is-3 {
@@ -2151,6 +2203,7 @@ html[data-theme="dark"] .course-item:hover {
     .contact-mobile p {
         font-size: 0.8rem;
         margin-bottom: 1rem;
+        text-indent: 1.5rem;
     }
 
     .contact-intro {
