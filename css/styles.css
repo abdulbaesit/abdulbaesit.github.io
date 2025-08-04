@@ -189,10 +189,18 @@ section.animate-in {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    margin: 2rem 0;
+    margin: 0.01rem 0;
     position: relative;
     overflow: hidden;
     transform: translateZ(0);
+}
+
+.section:first-child {
+    margin-top: 8rem;
+}
+
+.section:nth-child(2) {
+    margin-top: 3rem;
 }
 
 html[data-theme="dark"] .section {
@@ -1754,6 +1762,18 @@ html[data-theme="dark"] .course-item:hover {
         padding: 0 0.5rem;
     }
 
+    .section {
+        margin: 0.0001rem 0;
+    }
+
+    .section:first-child {
+        margin-top: 7rem;
+    }
+
+    .section:nth-child(2) {
+        margin-top: 2.5rem;
+    }
+
     /* Project cards mobile layout */
     .column.is-one-third {
         flex: 0 0 100%;
@@ -1973,6 +1993,18 @@ html[data-theme="dark"] .course-item:hover {
         padding: 0 0.5rem;
     }
 
+    .section {
+        margin: 0.00005rem 0;
+    }
+
+    .section:first-child {
+        margin-top: 6rem;
+    }
+
+    .section:nth-child(2) {
+        margin-top: 2rem;
+    }
+
     /* Ensure theme icon is visible on very small screens */
     .theme-icon {
         padding: 6px;
@@ -2175,6 +2207,18 @@ html[data-theme="dark"] .course-item:hover {
 
     .section .container {
         padding: 0 0.3rem;
+    }
+
+    .section {
+        margin: 0.00001rem 0;
+    }
+
+    .section:first-child {
+        margin-top: 5rem;
+    }
+
+    .section:nth-child(2) {
+        margin-top: 1.5rem;
     }
 
     .theme-icon {
