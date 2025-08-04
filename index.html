@@ -32,22 +32,42 @@
     <nav class="navbar is-centered">
         <div class="container">
             <div class="navbar-brand">
-                <a href="/" class="navbar-item">Home</a>
-                <a href="#projects" class="navbar-item">Projects</a>
-                <a href="#education" class="navbar-item">Education</a>
-                <a href="#awards" class="navbar-item">Awards</a>
-                <a href="#contact" class="navbar-item">Contact</a>
-                <button class="theme-icon" id="theme-toggle">
-                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                        style="display: none;">
-                        <path
-                            d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-                    </svg>
-                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
-                    </svg>
-                </button>
+                <div class="navbar-start">
+                    <button class="theme-icon" id="theme-toggle">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+                            style="display: none;">
+                            <path
+                                d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
+                        </svg>
+                    </button>
+                    <div class="navbar-desktop-menu">
+                        <a href="/" class="navbar-item">Home</a>
+                        <a href="#projects" class="navbar-item">Projects</a>
+                        <a href="#education" class="navbar-item">Education</a>
+                        <a href="#awards" class="navbar-item">Awards</a>
+                        <a href="#contact" class="navbar-item">Contact</a>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <button class="navbar-burger" id="navbar-burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+            <div class="navbar-menu" id="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item">Home</a>
+                    <a href="#projects" class="navbar-item">Projects</a>
+                    <a href="#education" class="navbar-item">Education</a>
+                    <a href="#awards" class="navbar-item">Awards</a>
+                    <a href="#contact" class="navbar-item">Contact</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -323,6 +343,63 @@
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
+                </div>
+            </div>
+
+            <!-- Mobile Contact Layout -->
+            <div class="contact-mobile">
+                <div class="contact-intro">
+                    <h3>Get In Touch</h3>
+                    <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat
+                        about
+                        technology and research.</p>
+                </div>
+
+                <div class="contact-form-mobile">
+                    <h3>Send a Message</h3>
+                    <form id="contact-form-mobile">
+                        <div class="form-group">
+                            <input type="text" id="name-mobile" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email-mobile" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject-mobile" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message-mobile" name="message" placeholder="Your Message" rows="5"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-links-mobile">
+                    <div class="contact-method-mobile">
+                        <i class="fa fa-envelope"></i>
+                        <span><a href="mailto:abdulbaesit13@gmail.com"
+                                class="has-text-link">abdulbaesit13@gmail.com</a></span>
+                    </div>
+                    <div class="contact-method-mobile">
+                        <i class="fa fa-university"></i>
+                        <span><a href="mailto:26100381@lums.edu.pk"
+                                class="has-text-link">26100381@lums.edu.pk</a></span>
+                    </div>
+                    <div class="contact-method-mobile">
+                        <i class="fa fa-linkedin"></i>
+                        <span><a href="https://www.linkedin.com/in/abdulbaesit" target="_blank"
+                                class="has-text-link">linkedin.com/in/abdulbaesit</a></span>
+                    </div>
+                    <div class="contact-method-mobile">
+                        <i class="fa fa-github"></i>
+                        <span><a href="https://github.com/abdulbaaesit" target="_blank"
+                                class="has-text-link">github.com/abdulbaaesit</a></span>
+                    </div>
+                    <div class="contact-method-mobile">
+                        <i class="fa fa-map-marker"></i>
+                        <span>Lahore, Pakistan</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -687,6 +764,34 @@
             // Save new theme preference
             localStorage.setItem("theme", newTheme);
         });
+
+        // Mobile navigation toggle
+        const navbarBurger = document.getElementById("navbar-burger");
+        const navbarMenu = document.getElementById("navbar-menu");
+
+        if (navbarBurger && navbarMenu) {
+            navbarBurger.addEventListener("click", () => {
+                navbarMenu.classList.toggle("active");
+                navbarBurger.classList.toggle("active");
+            });
+
+            // Close menu when clicking on a navigation item
+            const navbarItems = navbarMenu.querySelectorAll(".navbar-item");
+            navbarItems.forEach(item => {
+                item.addEventListener("click", () => {
+                    navbarMenu.classList.remove("active");
+                    navbarBurger.classList.remove("active");
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!navbarBurger.contains(e.target) && !navbarMenu.contains(e.target)) {
+                    navbarMenu.classList.remove("active");
+                    navbarBurger.classList.remove("active");
+                }
+            });
+        }
     </script>
 </body>
 
