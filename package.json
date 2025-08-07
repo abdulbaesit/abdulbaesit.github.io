@@ -1,0 +1,42 @@
+{
+    "name": "abdulbasit-portfolio",
+    "version": "1.0.0",
+    "description": "Personal portfolio website for Abdul Basit Khattak - CS student at LUMS University",
+    "main": "index.html",
+    "scripts": {
+        "start": "python3 -m http.server 8000",
+        "dev": "live-server --port=8000",
+        "build": "echo 'Static site - no build process required'",
+        "test": "echo 'No tests specified'",
+        "deploy": "gh-pages -d ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/abdulbaaesit/abdulbaaesit.github.io.git"
+    },
+    "keywords": [
+        "portfolio",
+        "personal-website",
+        "computer-science",
+        "cybersecurity",
+        "networking",
+        "lums",
+        "responsive",
+        "javascript",
+        "html5",
+        "css3"
+    ],
+    "author": {
+        "name": "Abdul Basit Khattak",
+        "email": "abdulbaesit13@gmail.com",
+        "url": "https://github.com/abdulbaaesit"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/abdulbaaesit/abdulbaaesit.github.io/issues"
+    },
+    "homepage": "https://abdulbaaesit.github.io",
+    "devDependencies": {
+        "live-server": "^1.2.2"
+    }
+}
