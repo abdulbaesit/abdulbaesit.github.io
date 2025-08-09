@@ -271,8 +271,7 @@ html[data-theme="dark"] .navbar {
     -moz-border-radius: 0px !important;
     font-weight: 600;
     letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 16px;
     margin: 0 0.25rem;
 }
 
@@ -1263,7 +1262,7 @@ html[data-theme="dark"] .navbar {
 }
 
 .navbar-brand-name {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.5rem;
     font-weight: 800;
     color: #1bb8bd;
@@ -1342,8 +1341,8 @@ html[data-theme="dark"] .navbar-burger span {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
-    font-size: 0.9rem;
-    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
     letter-spacing: -0.01em;
     padding: 0.5rem 1rem;
     border-radius: 0px !important;
@@ -1476,7 +1475,7 @@ html[data-theme="dark"] .moon-icon {
 }
 
 .title.has-text-link.is-4 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: #1bb8bd;
@@ -1542,7 +1541,7 @@ html[data-theme="dark"] .card:hover {
 }
 
 .card-header-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
@@ -2294,7 +2293,7 @@ html[data-theme="dark"] .course-item:hover {
 }
 
 .contact-mobile h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: #1bb8bd;
@@ -2395,7 +2394,7 @@ html[data-theme="dark"] .contact-method-mobile a {
 }
 
 .contact-info h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: #1bb8bd;
@@ -2493,7 +2492,7 @@ html[data-theme="dark"] .contact-form {
     color: #333;
     font-size: 1rem;
     transition: all 0.3s ease;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 html[data-theme="dark"] .form-group input,
@@ -2764,7 +2763,7 @@ html[data-theme="dark"] .notification-close {
 }
 
 .title.has-text-primary.is-3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #1bb8bd;
     font-size: 2.25rem;
     font-weight: 800;
@@ -2781,7 +2780,7 @@ html[data-theme="dark"] .title.has-text-primary.is-3 {
 }
 
 .subtitle {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.1rem;
     color: #4a5568;
     margin-bottom: 0.5rem;
@@ -2806,7 +2805,7 @@ html[data-theme="dark"] .content.is-small {
 }
 
 .content {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     line-height: 1.7;
     color: #2d3748;
@@ -2918,7 +2917,7 @@ section {
 }
 
 .section-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 2rem;
     font-weight: 800;
     color: #1a202c;
@@ -2993,7 +2992,7 @@ section {
 }
 
 .experience-item h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: #333;
@@ -3075,7 +3074,7 @@ section {
 }
 
 .project-item h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: #333;
@@ -3103,7 +3102,7 @@ section {
 }
 
 .project-links a {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #333;
     text-decoration: none;
     margin-right: 1rem;
@@ -3214,7 +3213,7 @@ section {
 }
 
 .education-item h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     color: #333;
@@ -3270,7 +3269,7 @@ section {
 }
 
 .award-item h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     color: #333;
