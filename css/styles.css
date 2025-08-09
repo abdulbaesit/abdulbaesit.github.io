@@ -189,7 +189,7 @@ section.animate-in {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    margin: 0.01rem 0;
+    margin: 0.01rem 2vw;
     position: relative;
     overflow: hidden;
     transform: translateZ(0);
@@ -1207,11 +1207,27 @@ html[data-theme="dark"] .navbar-item::before {
 }
 
 /* Container */
+/* Container */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    margin: 0 auto !important;
+    padding: 0 rem;
 }
+
+/* When container lives inside a section, make it edge-to-edge */
+/* .section>.container {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+} */
+
+/* Desktop container width */
+/* @media screen and (min-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+} */
+
 
 /* Navigation */
 .navbar {
@@ -1219,6 +1235,7 @@ html[data-theme="dark"] .navbar-item::before {
     top: 0;
     left: 0;
     right: 0;
+    margin-left: -7rem;
     background: rgba(59, 175, 179, 0.05);
     backdrop-filter: blur(20px);
     z-index: 1000;
@@ -1252,7 +1269,8 @@ html[data-theme="dark"] .navbar {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.5rem 0;
+    /* padding: 0.5rem 5rem; */
+    padding: 0rem 0rem;
 }
 
 .navbar-start {
@@ -1464,14 +1482,21 @@ html[data-theme="dark"] .moon-icon {
 
 
 /* Section styles for new layout */
-.section {
+/* .section {
     padding: 3rem 0;
+} */
+
+
+
+.section {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .section .container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0;
 }
 
 .title.has-text-link.is-4 {
@@ -1495,13 +1520,13 @@ html[data-theme="dark"] .title.has-text-link.is-4 {
 .columns.is-multiline {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -0.75rem;
+    margin: -0.25rem 0.25rem;
 }
 
 .column.is-one-third {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
-    padding: 0 0.75rem;
+    padding: 0.8rem 0.75rem;
     margin-bottom: 1.5rem;
 }
 
@@ -1547,9 +1572,101 @@ html[data-theme="dark"] .card:hover {
     margin: 0;
 }
 
+/* Utility color helpers */
+.has-background-primary {
+    background-color: #1bb8bd !important;
+    /* favorite primary */
+    background-image: none !important;
+}
+
+html[data-theme="dark"] .has-background-primary {
+    background-color: #1bb8bd !important;
+}
+
+.has-text-white {
+    color: #ffffff !important;
+}
+
+/* Ensure card header text is readable on primary background */
+.has-background-primary .card-header-title {
+    color: #ffffff;
+}
+
+/* Hero section responsive improvements */
+.hero-section {
+    padding-top: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        margin-left: 0.5rem;
+    }
+
+    .hero-section {
+        padding-top: 5rem !important;
+        /* clear fixed navbar */
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .hero-section .media {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-section .media-left {
+        margin-right: 0;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-section .image.is-128x128 {
+        width: 120px;
+        height: 120px;
+        margin: 0;
+    }
+
+    .hero-section .media-content {
+        text-align: center;
+        width: 100%;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .hero-section .title.has-text-primary.is-3 {
+        font-size: 1.4rem;
+    }
+
+    .hero-section .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero-section .content {
+        text-align: left;
+        margin: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
 .card-content {
-    padding: 1rem;
+    /* padding: 1rem; */
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0rem;
     flex-grow: 1;
+    max-height: 16.5rem;
 }
 
 .card-footer {
@@ -1703,39 +1820,39 @@ html[data-theme="dark"] .course-item:hover {
         border-radius: 0;
     }
 
-    /* Hero section mobile fixes */
+    /* Mobile media layout: stack vertically */
     .media {
-        flex-direction: row;
-        text-align: left;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .media-left {
-        margin-right: 1rem;
-        margin-bottom: 0;
+        margin-right: 0;
+        margin-bottom: 0.75rem;
     }
 
     .image.is-128x128 {
-        width: 80px;
-        height: 80px;
+        width: 110px;
+        height: 110px;
         margin: 0;
     }
 
     .media-content {
-        text-align: left;
+        text-align: center;
         width: 100%;
         padding-left: 0;
-        margin-left: -0.5rem;
+        margin-left: 0;
     }
 
     .title.has-text-primary.is-3 {
-        font-size: 1.5rem;
-        text-align: left;
+        font-size: 1.4rem;
+        text-align: center;
     }
 
     .subtitle {
-        font-size: 0.9rem;
-        text-align: left;
+        font-size: 0.95rem;
+        text-align: center;
     }
 
     .content.is-small {
@@ -1747,9 +1864,11 @@ html[data-theme="dark"] .course-item:hover {
     }
 
     .content {
-        text-align: justify;
-        margin: 0 1rem;
-        padding: 0 0.5rem;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        word-break: normal;
+        overflow-wrap: anywhere;
     }
 
     /* Container padding for mobile */
@@ -1758,11 +1877,11 @@ html[data-theme="dark"] .course-item:hover {
     }
 
     .section .container {
-        padding: 0 0.5rem;
+        padding: 0;
     }
 
     .section {
-        margin: 0.0001rem 0;
+        margin: 0;
     }
 
     .section:first-child {
@@ -1859,6 +1978,68 @@ html[data-theme="dark"] .course-item:hover {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+}
+
+/* Phone-specific hero layout overrides (placed after generic mobile rules) */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 5rem !important;
+        /* below fixed navbar */
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .hero-section .media {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 1rem;
+        text-align: left !important;
+    }
+
+    .hero-section .media-left {
+        margin-right: 1rem;
+        margin-right: -12px;
+        margin-left: -12px;
+        margin-bottom: 0;
+        flex: 0 0 220px;
+    }
+
+    .hero-section .image.is-128x128 {
+        width: 220px !important;
+        height: 220px !important;
+    }
+
+    .hero-section .media-content {
+        text-align: left !important;
+        margin-left: 2px;
+        margin-right: -10px;
+        padding-left: 0;
+        width: 100%;
+        flex: 1 1 0;
+    }
+
+    .hero-section .title.has-text-primary.is-3 {
+        font-size: 1.8rem !important;
+        line-height: 1.15;
+        margin: 0;
+        word-break: break-word;
+    }
+
+    .hero-section .subtitle {
+        font-size: 1rem;
+        margin-top: 0.25rem;
+    }
+
+    .hero-section .content.is-small {
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+    }
+
+    .hero-section .content {
+        margin-top: 1rem;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -1989,11 +2170,11 @@ html[data-theme="dark"] .course-item:hover {
     }
 
     .section .container {
-        padding: 0 0.5rem;
+        /* padding: 0 1.5rem; */
     }
 
     .section {
-        margin: 0.00005rem 0;
+        margin: 0.0001rem 2vw;
     }
 
     .section:first-child {
@@ -2184,7 +2365,7 @@ html[data-theme="dark"] .course-item:hover {
 
     .content {
         text-align: justify;
-        margin: 0 1rem;
+        /* margin: 0 1rem; */
         padding: 0 0.5rem;
     }
 
@@ -2209,7 +2390,7 @@ html[data-theme="dark"] .course-item:hover {
     }
 
     .section {
-        margin: 0.00001rem 0;
+        margin: 0.0001rem 2vw;
     }
 
     .section:first-child {
@@ -2908,8 +3089,39 @@ html[data-theme="dark"] .content {
 }
 
 /* Section Styles */
-section {
+/* section {
     padding: 2rem 0;
+} */
+@media screen and (min-width: 1024px) {
+    .section {
+        padding: 1rem 5rem
+    }
+
+    /* .container {
+        max-width: 960px !important;
+    } */
+}
+
+
+
+@media (max-width: 768px) {
+    .section {
+        margin: 0rem 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .section {
+        margin: 0rem;
+    }
+}
+
+.section .container {
+    margin: 0 auto;
+}
+
+.section {
+    border: 0rem;
 }
 
 .section-header {
