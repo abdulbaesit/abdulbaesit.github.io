@@ -252,20 +252,26 @@
                             href="https://lums.edu.pk/lums_employee/516" target="_blank" class="has-text-link line-link"
                             rel="noopener noreferrer">Dr.
                             Mian Muhammad Awais</a> &amp; <a href="https://web.lums.edu.pk/~akarim/" target="_blank"
-                            class="has-text-link line-link" rel="noopener noreferrer">Dr. Asim Karim</a>) - Fall 2025</li>
+                            class="has-text-link line-link" rel="noopener noreferrer">Dr. Asim Karim</a>) - Fall 2025
+                    </li>
                     <li>MATH230: Probability (Professor: <a href="https://lums.edu.pk/lums_employee/2614"
-                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. ljaz Haider Naqvi</a>) - Spring 2025</li>
+                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. ljaz Haider
+                            Naqvi</a>) - Spring 2025</li>
                     <li>MATH102: Calculus II (Professor: <a href="https://sites.google.com/view/waqasliazhar/home"
-                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Waqas Ali Azhar</a>) - Fall 2024</li>
+                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Waqas Ali
+                            Azhar</a>) - Fall 2024</li>
                     <li>MATH120: Linear Algebra with Differential Equations (Professor: <a
                             href="https://sites.google.com/view/waqasliazhar/home" target="_blank"
-                            class="has-text-link line-link" rel="noopener noreferrer">Dr. Waqas Ali Azhar</a>) - Summer 2024</li>
+                            class="has-text-link line-link" rel="noopener noreferrer">Dr. Waqas Ali Azhar</a>) - Summer
+                        2024</li>
                     <li>MATH101: Calculus I (Professor: <a href="https://soe.lums.edu.pk/lums_employee/10279"
-                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Shehryar Sikander</a>) - Summer 2025</li>
+                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Shehryar
+                            Sikander</a>) - Summer 2025</li>
                     <li>MATH101: Calculus I (Professors: <a href="https://lums.edu.pk/lums_employee/4268"
-                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Haniya Azam</a> &amp; <a
-                            href="https://habib.edu.pk/SSE/asgher-ali-ph-d/" target="_blank"
-                            class="has-text-link line-link" rel="noopener noreferrer">Dr. Asgher Ali</a>) - Fall 2023</li>
+                            target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Haniya
+                            Azam</a> &amp; <a href="https://habib.edu.pk/SSE/asgher-ali-ph-d/" target="_blank"
+                            class="has-text-link line-link" rel="noopener noreferrer">Dr. Asgher Ali</a>) - Fall 2023
+                    </li>
                 </ul>
             </div>
         </div>
@@ -462,7 +468,26 @@
     </div>
 
     <script>
+        // Prevent automatic scroll restoration and ensure page starts at top
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        // Force scroll to top on page load/refresh
+        window.addEventListener('beforeunload', () => {
+            window.scrollTo(0, 0);
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 0);
+        });
+
         document.addEventListener("DOMContentLoaded", () => {
+            // Force scroll to top when DOM is ready
+            window.scrollTo(0, 0);
+
             const savedTheme = localStorage.getItem("theme");
             const themeToggle = document.getElementById("theme-toggle");
 
@@ -487,6 +512,12 @@
             initMouseTrail();
             initNavbarScroll();
             initFAB();
+
+            // Initialize new effects
+            initCursorTrail();
+            initPerformanceParticles();
+            initCardEffects();
+            initFormEffects();
         });
 
         // Function to update theme icon
@@ -648,7 +679,7 @@
             }
         }
 
-        // Scroll-triggered animations
+        // Scroll-triggered animations with improved performance
         function initScrollAnimations() {
             const observerOptions = {
                 threshold: 0.1,
@@ -659,6 +690,15 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate-in');
+
+                        // Stagger card animations
+                        const cards = entry.target.querySelectorAll('.card, .course-item');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 100);
+                        });
                     }
                 });
             }, observerOptions);
@@ -666,6 +706,83 @@
             // Observe all sections
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
+            });
+        }
+
+        // Enhanced cursor trail effect
+        function initCursorTrail() {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                // Smooth cursor following
+                trail.style.left = mouseX - 10 + 'px';
+                trail.style.top = mouseY - 10 + 'px';
+            }, { passive: true });
+        }
+
+        // Performance-optimized particle system
+        function initPerformanceParticles() {
+            const container = document.createElement('div');
+            container.className = 'performance-particles';
+            document.body.appendChild(container);
+
+            const createParticle = () => {
+                const particle = document.createElement('div');
+                particle.className = 'performance-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 20000);
+            };
+
+            // Create particles at intervals
+            setInterval(createParticle, 2000);
+        }
+
+        // Enhanced card hover effects
+        function initCardEffects() {
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-12px) scale(1.03) rotateX(2deg)';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1) rotateX(0)';
+                });
+            });
+        }
+
+        // Enhanced form interactions
+        function initFormEffects() {
+            const inputs = document.querySelectorAll('input, textarea');
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.style.transform = 'translateY(-2px)';
+                    input.style.boxShadow = '0 0 20px rgba(27, 184, 189, 0.3)';
+                });
+
+                input.addEventListener('blur', () => {
+                    input.parentElement.style.transform = 'translateY(0)';
+                    input.style.boxShadow = 'none';
+                });
             });
         }
 

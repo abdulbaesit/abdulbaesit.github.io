@@ -7,7 +7,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 120px;
 }
 
 html[data-theme="dark"] {
@@ -33,6 +33,20 @@ body {
 html[data-theme="dark"] body {
     color: #e0e0e0;
     background-color: #1a1a1a;
+}
+
+/* Section anchor offset for fixed navbar */
+section {
+    scroll-margin-top: 120px;
+}
+
+/* Ensure anchor targets have proper spacing */
+#projects,
+#education,
+#awards,
+#contact,
+#teaching {
+    scroll-margin-top: 120px;
 }
 
 /* Interactive Background Elements */
@@ -171,16 +185,49 @@ html[data-theme="dark"] .grid-cell {
     border-color: rgba(27, 184, 189, 0.1);
 }
 
-/* Scroll-triggered animations */
+/* Scroll-triggered animations with performance optimizations */
 section {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
 }
 
 section.animate-in {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Staggered animation for child elements */
+.card,
+.course-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+}
+
+.animate-in .card,
+.animate-in .course-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add animation delays for staggered effect */
+.animate-in .card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.animate-in .card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.animate-in .card:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.animate-in .card:nth-child(4) {
+    transition-delay: 0.4s;
 }
 
 /* Enhanced section backgrounds with glassmorphism */
@@ -229,19 +276,40 @@ html[data-theme="dark"] .section::before {
     opacity: 1;
 }
 
-/* Enhanced card animations */
+/* Enhanced card animations with performance optimizations */
 .card {
     transform: translateZ(0);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform, box-shadow;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(27, 184, 189, 0.1) 50%, transparent 70%);
+    transform: rotate(-45deg) translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    transform: rotate(-45deg) translateX(100%);
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(27, 184, 189, 0.2);
+    transform: translateY(-12px) scale(1.03) rotateX(2deg);
+    box-shadow: 0 25px 50px rgba(27, 184, 189, 0.25);
 }
 
 html[data-theme="dark"] .card:hover {
-    box-shadow: 0 20px 40px rgba(27, 184, 189, 0.3);
+    box-shadow: 0 25px 50px rgba(27, 184, 189, 0.35);
 }
 
 /* Floating navigation */
@@ -258,7 +326,7 @@ html[data-theme="dark"] .navbar {
     box-shadow: none;
 }
 
-/* Enhanced navbar items with favorite color */
+/* Enhanced navbar effects with shimmer */
 .navbar-item {
     position: relative;
     overflow: hidden;
@@ -273,36 +341,7 @@ html[data-theme="dark"] .navbar {
     letter-spacing: 0.5px;
     font-size: 16px;
     margin: 0 0.25rem;
-}
-
-html[data-theme="dark"] .navbar-item {
-    background: transparent;
-    border: none;
-    border-radius: 0px !important;
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
-    margin: 0 0.25rem;
-}
-
-.navbar-item:hover {
-    background: transparent;
-    border: none;
-    transform: translateY(-1px);
-    box-shadow: none;
-    color: #1bb8bd !important;
-    border-radius: 0px !important;
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
-}
-
-html[data-theme="dark"] .navbar-item:hover {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    color: #1bb8bd !important;
-    border-radius: 0px !important;
-    -webkit-border-radius: 0px !important;
-    -moz-border-radius: 0px !important;
+    will-change: transform, color;
 }
 
 .navbar-item::before {
@@ -312,32 +351,40 @@ html[data-theme="dark"] .navbar-item:hover {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(27, 184, 189, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(27, 184, 189, 0.4), transparent);
     transition: left 0.6s ease;
     z-index: 1;
+}
+
+.navbar-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1bb8bd, #16a5a9);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .navbar-item:hover::before {
     left: 100%;
 }
 
-.navbar-item::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, rgba(27, 184, 189, 0.2) 0%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.4s ease;
-    z-index: 0;
+.navbar-item:hover::after {
+    width: 100%;
 }
 
-.navbar-item:hover::after {
-    width: 200%;
-    height: 200%;
+.navbar-item:hover {
+    background: transparent;
+    border: none;
+    transform: translateY(-2px);
+    box-shadow: none;
+    color: #1bb8bd !important;
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
 }
 
 /* Course items enhancement */
@@ -3606,4 +3653,220 @@ html[data-theme="dark"] .content {
 
 .contact-content a:hover {
     text-decoration: underline;
+}
+
+/* ================================ */
+/* NEW PERFORMANCE-OPTIMIZED EFFECTS */
+/* ================================ */
+
+/* Smooth scroll snap for sections */
+html {
+    scroll-snap-type: y proximity;
+}
+
+.section {
+    scroll-snap-align: start;
+}
+
+/* Interactive gradient borders for cards */
+.card {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(45deg, #1bb8bd, #16a5a9) border-box;
+    border: 2px solid transparent;
+}
+
+html[data-theme="dark"] .card {
+    background: linear-gradient(#2a2a2a, #2a2a2a) padding-box,
+        linear-gradient(45deg, #1bb8bd, #16a5a9) border-box;
+}
+
+/* Floating animations for profile image */
+.image.is-128x128 {
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Text reveal animation */
+.content,
+.subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced button hover effects */
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+/* Cursor trail effect */
+.cursor-trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(27, 184, 189, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    will-change: transform;
+}
+
+/* Parallax text effect */
+.parallax-text {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Interactive link hover effects */
+a:not(.navbar-item):not(.card-footer-item) {
+    position: relative;
+    text-decoration: none;
+}
+
+a:not(.navbar-item):not(.card-footer-item)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1bb8bd, #16a5a9);
+    transition: width 0.3s ease;
+}
+
+a:not(.navbar-item):not(.card-footer-item):hover::after {
+    width: 100%;
+}
+
+/* Optimized particle system */
+.performance-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.performance-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(27, 184, 189, 0.6);
+    border-radius: 50%;
+    animation: optimizedFloat 15s linear infinite;
+    will-change: transform;
+}
+
+@keyframes optimizedFloat {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Section entrance animations */
+.section-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced theme toggle with ripple effect */
+.theme-icon {
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(27, 184, 189, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+}
+
+.theme-icon:active::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Smooth focus states for accessibility */
+input:focus,
+textarea:focus,
+button:focus {
+    outline: 2px solid #1bb8bd;
+    outline-offset: 2px;
+    transition: outline 0.2s ease;
+}
+
+/* GPU-accelerated transforms for better performance */
+.card,
+.navbar-item,
+.submit-btn,
+.fab-button {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
