@@ -514,7 +514,6 @@
             initFAB();
 
             // Initialize new effects
-            initCursorTrail();
             initPerformanceParticles();
             initCardEffects();
             initFormEffects();
@@ -707,25 +706,6 @@
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
-        }
-
-        // Enhanced cursor trail effect
-        function initCursorTrail() {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            document.body.appendChild(trail);
-
-            let mouseX = 0;
-            let mouseY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-
-                // Smooth cursor following
-                trail.style.left = mouseX - 10 + 'px';
-                trail.style.top = mouseY - 10 + 'px';
-            }, { passive: true });
         }
 
         // Performance-optimized particle system
