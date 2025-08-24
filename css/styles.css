@@ -2463,9 +2463,11 @@ html[data-theme="dark"] .course-item:hover {
 
 /* Contact Section */
 .contact-content {
+    /* Use a single centered column by default so a lone form doesn't hug the left edge */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2rem;
     margin-top: 2rem;
 }
 
@@ -2646,6 +2648,41 @@ html[data-theme="dark"] .contact-method span {
     border-radius: 16px;
     padding: 2rem;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Desktop form improvements: center on wider screens and use a two-column input layout */
+@media screen and (min-width: 1024px) {
+    .contact-content {
+        /* keep centered single column container but allow internal form to set width */
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .contact-form {
+        max-width: 720px;
+        /* comfortable reading width on laptops */
+        width: 100%;
+        padding: 2.25rem;
+    }
+
+    /* Make first row two columns: name | email */
+    .contact-form .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        align-items: start;
+    }
+
+    /* Subject and message span full width */
+    .contact-form .form-grid-full {
+        grid-column: 1 / -1;
+    }
+
+    .contact-form h3 {
+        font-size: 1.6rem;
+        margin-bottom: 0.75rem;
+        color: #1bb8bd;
+    }
 }
 
 html[data-theme="dark"] .contact-form {
