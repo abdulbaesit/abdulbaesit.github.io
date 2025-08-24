@@ -2239,7 +2239,7 @@ html[data-theme="dark"] .course-item:hover {
     }
 
     .section {
-        margin: 0.0001rem 2vw;
+        /* margin: 0.0001rem 2vw; */
     }
 
     .section:first-child {
@@ -3208,7 +3208,7 @@ html[data-theme="dark"] .content {
 
 @media (max-width: 768px) {
     .section {
-        margin: 0rem 1.5rem;
+        /* margin: 0rem 1.5rem; */
     }
 }
 
