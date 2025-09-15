@@ -3679,11 +3679,12 @@ html[data-theme="dark"] .content {
 
 /* Smooth scroll snap for sections */
 html {
-    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
 }
 
 .section {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
 }
 
 /* Interactive gradient borders for cards */
