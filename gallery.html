@@ -9,11 +9,219 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/main.css" />
     <style>
-        /* Keep page lightweight; re-use site CSS for typography/colors */
-        body {
-            padding-top: 4rem;
+        .gallery-controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-btn {
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: transparent;
+            color: inherit;
+            cursor: pointer
+        }
+
+        /* Active filter state (green) */
+        .gallery-btn.active {
+            background: #16a34a;
+            /* green */
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(22, 163, 74, 0.15);
+            border: none;
+        }
+
+        .gallery-btn:focus {
+            outline: 3px solid rgba(22, 163, 74, 0.15);
+            outline-offset: 2px;
+        }
+
+        .gallery-btn.primary {
+            border: none
+        }
+
+        .gallery-btn[disabled],
+        .gallery-btn.is-loaded {
+            opacity: 0.65;
+            cursor: not-allowed
+        }
+
+        .gallery-btn.is-loaded {
+            border: none
+        }
+
+        /* responsive small square thumbnails */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1/1;
+            display: block;
+        }
+
+        /* Ensure the inner container fills the framed square so child images can use 100% height reliably */
+        .gallery-item .gallery-inner {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .25s ease;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.03);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 8px 10px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity .18s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Lightbox content should contain the entire image (no cropping) and keep controls above it */
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content img,
+        .lightbox-content video {
+            max-width: calc(100vw - 80px);
+            max-height: calc(100vh - 80px);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-close,
+        .lightbox-nav {
+            position: absolute;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100001;
+        }
+
+        /* Make close a circular control and clearly visible */
+        .lightbox-close {
+            background: rgba(0, 0, 0, 0.35);
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 12px;
+            right: 16px;
+            font-size: 20px;
+            line-height: 1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: background .15s ease, transform .08s ease;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            background: rgba(0, 0, 0, 0.55);
+            transform: scale(1.03);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1
+        }
+
+        @media (max-width:1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width:900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lightbox styles */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99999;
+            padding: 20px;
+            /* keep some breathing room so very tall images don't touch edges */
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #lightbox[aria-hidden="false"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close {
+            top: 12px;
+            right: 16px;
+        }
+
+        .lightbox-nav.lightbox-prev {
+            left: 16px;
+        }
+
+        .lightbox-nav.lightbox-next {
+            right: 64px;
         }
     </style>
 </head>
@@ -22,44 +230,11 @@
     <nav class="navbar is-centered">
         <div class="container">
             <div class="navbar-brand">
-                <div class="navbar-start">
-                    <button class="theme-icon" id="theme-toggle">
-                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-                            style="display: none;">
-                            <path
-                                d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-                        </svg>
-                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
-                        </svg>
-                    </button>
-                    <div class="navbar-desktop-menu">
-                        <a href="/" class="navbar-item">Home</a>
-                        <a href="/#projects" class="navbar-item">Projects</a>
-                        <a href="/#education" class="navbar-item">Education</a>
-                        <a href="/#awards" class="navbar-item">Awards</a>
-                        <a href="/gallery.html" class="navbar-item is-active">Gallery</a>
-                        <a href="/#contact" class="navbar-item">Contact</a>
-                    </div>
-                </div>
-                <div class="navbar-end">
-                    <button class="navbar-burger" id="navbar-burger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </div>
-            <div class="navbar-menu" id="navbar-menu">
-                <div class="navbar-start">
-                    <a href="/" class="navbar-item">Home</a>
-                    <a href="/#projects" class="navbar-item">Projects</a>
-                    <a href="/#education" class="navbar-item">Education</a>
-                    <a href="/#awards" class="navbar-item">Awards</a>
-                    <a href="/gallery.html" class="navbar-item is-active">Gallery</a>
-                    <a href="/#contact" class="navbar-item">Contact</a>
-                </div>
+                <a href="main.html" class="navbar-item">Home</a>
+                <a href="/gallery.html" class="navbar-item">Gallery</a>
+                <button>
+                    <span class="material-icons navbar-item theme-icon" id="theme-toggle">wb_sunny</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -84,41 +259,25 @@
     </section>
 
     <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
-        <button class="lightbox-close" aria-label="Close">✕</button>
-        <button class="lightbox-nav lightbox-prev" aria-label="Previous">❮</button>
-        <button class="lightbox-nav lightbox-next" aria-label="Next">❯</button>
+        <button type="button" class="lightbox-close" aria-label="Close">✕</button>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous">❮</button>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next">❯</button>
         <div class="lightbox-content" id="lightbox-content"></div>
     </div>
 
     <script>
-        // Theme sync and mobile menu logic
+        // Theme sync (kept minimal and matching main.html behavior)
         document.addEventListener("DOMContentLoaded", () => {
             const savedTheme = localStorage.getItem("theme");
-            const themeToggle = document.getElementById("theme-toggle");
 
             if (savedTheme) {
                 document.documentElement.setAttribute("data-theme", savedTheme);
-                updateThemeIcon(savedTheme);
             } else {
                 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
                 const systemTheme = prefersDarkScheme ? "dark" : "light";
                 document.documentElement.setAttribute("data-theme", systemTheme);
-                updateThemeIcon(systemTheme);
             }
         });
-
-        function updateThemeIcon(theme) {
-            const sunIcon = document.querySelector('.sun-icon');
-            const moonIcon = document.querySelector('.moon-icon');
-
-            if (theme === "dark") {
-                sunIcon.style.display = "block";
-                moonIcon.style.display = "none";
-            } else {
-                sunIcon.style.display = "none";
-                moonIcon.style.display = "block";
-            }
-        }
 
         const themeToggleButton = document.getElementById("theme-toggle");
         if (themeToggleButton) {
@@ -127,39 +286,13 @@
                 const currentTheme = html.getAttribute("data-theme") || "light";
                 const newTheme = currentTheme === "light" ? "dark" : "light";
                 html.setAttribute("data-theme", newTheme);
-                updateThemeIcon(newTheme);
                 localStorage.setItem("theme", newTheme);
-            });
-        }
-
-        const navbarBurger = document.getElementById("navbar-burger");
-        const navbarMenu = document.getElementById("navbar-menu");
-
-        if (navbarBurger && navbarMenu) {
-            navbarBurger.addEventListener("click", () => {
-                navbarMenu.classList.toggle("active");
-                navbarBurger.classList.toggle("active");
-            });
-
-            const navbarItems = navbarMenu.querySelectorAll(".navbar-item");
-            navbarItems.forEach(item => {
-                item.addEventListener("click", () => {
-                    navbarMenu.classList.remove("active");
-                    navbarBurger.classList.remove("active");
-                });
-            });
-
-            document.addEventListener("click", (e) => {
-                if (!navbarBurger.contains(e.target) && !navbarMenu.contains(e.target)) {
-                    navbarMenu.classList.remove("active");
-                    navbarBurger.classList.remove("active");
-                }
             });
         }
     </script>
     <!-- HEIC to JPEG converter (WASM) for cross-browser previews -->
     <script src="https://unpkg.com/heic2any/dist/heic2any.min.js"></script>
-    <script src="js/gallery.js"></script>
+    <script src="gallery.js"></script>
 </body>
 
 </html>
