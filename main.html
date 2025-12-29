@@ -1,0 +1,455 @@
+<!doctype html>
+<html data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Abdul Basit — Computer Science student at LUMS">
+    <title>Basit</title>
+    <link rel="icon" type="image/x-icon" href="assets/icon.png">
+    <link rel="stylesheet" href="/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Center the icons in publications */
+        .icon-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Avatar / profile image styles */
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            max-width: 40vw;
+            max-height: 40vw;
+            border-radius: 50%;
+            overflow: hidden;
+            display: block;
+            box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.45);
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
+
+        /* spacing for the hero area */
+        .media-left {
+            margin-right: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 160px;
+                height: 160px;
+                margin: 0 auto 18px;
+            }
+
+            .media-left {
+                margin-right: 0;
+            }
+
+            .media-content {
+                text-align: center;
+            }
+        }
+
+        /* Contact form layout and styling */
+        #contact form {
+            display: block;
+            max-width: 900px;
+            margin-top: 8px;
+        }
+
+        #contact .contact-row {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        #contact .contact-row.three {
+            grid-template-columns: 1fr;
+        }
+
+        #contact label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact textarea {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background-color: rgba(255, 255, 255, 0.02);
+            color: inherit;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #contact textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        #contact button[type="submit"] {
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: block;
+        }
+
+        @media (min-width: 700px) {
+            #contact .contact-row.three {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
+                align-items: start;
+            }
+
+            #contact .contact-row.message {
+                grid-template-columns: 1fr 220px;
+                gap: 18px;
+                align-items: start;
+            }
+
+            #contact textarea {
+                min-height: 110px;
+            }
+
+            #contact .actions {
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-end;
+            }
+
+            #contact .actions button {
+                margin-top: 56px;
+                padding: 8px 16px;
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar is-centered">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="main.html" class="navbar-item">Home</a>
+                <a href="#projects" class="navbar-item">Projects</a>
+                <a href="/gallery.html" class="navbar-item">Gallery</a>
+                <button>
+                    <span class="material-icons navbar-item theme-icon" id="theme-toggle">wb_sunny</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <section class="section big-screen">
+        <div class="container">
+            <div class="media is-align-items-center">
+                <figure class="media-left">
+                    <div class="profile-image" role="img" aria-label="Abdul Basit">
+                        <img src="assets/me.jpg" alt="Abdul Basit" />
+                    </div>
+                </figure>
+                <div class="media-content">
+                    <h1 class="title has-text-primary is-3">Abdul Basit Khattak/عبدالباسط خٹک</h1>
+                    <p class="subtitle">CS {at} LUMS</p>
+                    <p class="content is-small">26100381 {at} lums {dot} edu {dot} pk | <a href="/assets/basit.pdf"
+                            target="_blank" class="has-text-weight-semibold line-link has-text-link">cv</a> | <a
+                            href="/assets/pgp.txt" target="_blank"
+                            class="has-text-weight-semibold line-link has-text-link">pgp
+                            key</a></p>
+
+                </div>
+            </div>
+            <p class="content">I am a Computer Science student at Lahore University of Management Sciences (LUMS) with a
+                strong interest in cybersecurity, computer networking, and algorithm design. My research focuses on
+                exploring the landscape of SDN, particularly its real-world vulnerabilities and applications in drone
+                communication networks. I am working on protecting SDN architectures from DoS/DDoS attacks, securing
+                communication between controllers and switches through encryption algorithms, and evaluating trust
+                models and authentication mechanisms in SDN environments, while designing algorithms that are efficient
+                in both time and space complexity for practical use.
+            </p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <a class="title has-text-link is-4" id="projects" href="#projects"># Select Projects/منتخب پروجیکٹس</a>
+            <!-- Begin row -->
+            <div class='space columns is-multiline'>
+
+                <!-- Begin card -->
+                <div class='column is-one-third'>
+                    <div class='card equal-height'>
+                        <header class="card-header has-background-primary" style="opacity:70%">
+                            <p class="card-header-title has-text-white">Decarbonizing Pakistan: MESSAGEix Analysis</p>
+                        </header>
+                        <div class="card-content">
+                            <p class="content is-italic"><span class="has-text-weight-semibold"><em>Abdul
+                                        Basit</em></span>, Shanzay Saleem</p>
+                            <div class="content is-small">
+                                Energy system modeling study analyzing low-emission pathways for Pakistan (2025-2070)
+                                using MESSAGEix. Explores carbon pricing, renewable energy transitions, CCS deployment,
+                                and investment requirements for deep decarbonization under stringent climate
+                                constraints.
+                            </div>
+                            <p class="content">November 2025 - December 2025</p>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="/assets/project-messageix/paper-messageix.pdf"
+                                class="card-footer-item material-icons icon-link has-text-link"
+                                target="_blank">description</a>
+                            <a href="/assets/project-messageix/presentation.pdf"
+                                class="card-footer-item material-icons icon-link has-text-link"
+                                target="_blank">slideshow</a>
+                            <a href="https://www.kaggle.com/code/abdulbaesit/project-meesage-ix"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">code</a>
+                        </footer>
+
+                    </div>
+                </div>
+                <!-- End card -->
+                <!-- Begin card -->
+                <div class='column is-one-third'>
+                    <div class='card equal-height'>
+                        <header class="card-header has-background-primary" style="opacity:70%">
+                            <p class="card-header-title has-text-white">SALER x SQUID GAME</p>
+                        </header>
+                        <div class="card-content">
+                            <p class="content is-italic"><span class="has-text-weight-semibold"><em>Abdul
+                                        Basit</em></span></p>
+                            <div class="content is-small">
+                                Strategic board game collection inspired by Netflix's Squid Game featuring three unique
+                                games: Sālĕr, Tinḳä, and Läḳīr. Built with vanilla JavaScript, includes universal music
+                                control, dynamic theming, and responsive design.
+                            </div>
+                            <p class="content">August 2025</p>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="https://abdulbaesit.github.io/saler-x-squidgame/"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">open_in_new</a>
+                            <a href="https://github.com/abdulbaesit/saler-x-squidgame"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">code</a>
+                        </footer>
+
+                    </div>
+                </div>
+                <!-- End card -->
+
+                <!-- Begin card -->
+                <div class='column is-one-third'>
+                    <div class='card equal-height'>
+                        <header class="card-header has-background-primary" style="opacity:70%">
+                            <p class="card-header-title has-text-white">ColorGrid</p>
+                        </header>
+                        <div class="card-content">
+                            <p class="content is-italic"><span class="has-text-weight-semibold"><em>Abdul
+                                        Basit</em></span></p>
+                            <div class="content is-small">
+                                Real-time multiplayer 5x5 board game with leaderboards, profile customization, and live
+                                gameplay. Built with React, Node.js/Express, Socket.io, and MongoDB. Modern theming and
+                                fully responsive.
+                            </div>
+                            <p class="content">August 2025</p>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="https://abdulbaesit.github.io/colorgrid/"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">open_in_new</a>
+                            <a href="https://github.com/abdulbaesit/colorgrid"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">code</a>
+                        </footer>
+
+                    </div>
+                </div>
+                <!-- End card -->
+                <!-- Begin card -->
+                <div class='column is-one-third'>
+                    <div class='card equal-height'>
+                        <header class="card-header has-background-primary" style="opacity:70%">
+                            <p class="card-header-title has-text-white">SmartCart Commerce</p>
+                        </header>
+                        <div class="card-content">
+                            <p class="content is-italic"><span class="has-text-weight-semibold"><em>Usman Sajid, Abdul
+                                        Basit, Virad Munir, Abdul Hadi</em></span></p>
+                            <div class="content is-small">Full-stack e-commerce web application built with Next.js and
+                                React. Designed core front-end features including product listings, shopping cart, and
+                                checkout interface.</div>
+                            <p class="content">January 2025 - May 2025</p>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="https://smart-cart-phi.vercel.app/"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">open_in_new</a>
+                            <a href="https://github.com/abdulbaesit/smart-cart"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">code</a>
+                        </footer>
+                    </div>
+                </div>
+                <!-- End card -->
+                <!-- Begin card -->
+                <div class='column is-one-third'>
+                    <div class='card equal-height'>
+                        <header class="card-header has-background-primary" style="opacity:70%">
+                            <p class="card-header-title has-text-white">Smart House System</p>
+                        </header>
+                        <div class="card-content">
+                            <p class="content is-italic"><span class="has-text-weight-semibold"><em>Abubakar Mughal,
+                                        Muhammad Salman, Abdul Basit</em></span></p>
+                            <div class="content is-small">Automated smart home system designed to monitor and control
+                                water levels, temperature, and lighting using digital logic and sensor-based inputs.
+                            </div>
+                            <p class="content">March 2024 - April 2024</p>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="/assets/smart-house.jpeg"
+                                class="card-footer-item material-icons icon-link has-text-link" target="_blank"
+                                rel="noopener noreferrer">description</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <!-- End row -->
+        </div>
+        </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+            <a class="title has-text-link is-4" id="teaching" href="#teaching"># Teaching/تدریس</a>
+            <ul class="space content">
+                <li>
+                    Undergraduate Teaching Assistant, LUMS
+                    <ul class="space content">
+                        <li>CS310/CS5101: Algorithms (Professor: <a href="https://web.lums.edu.pk/~imdad/index.html"
+                                target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Imdad
+                                Ullah Khan</a>) - Fall 2025</li>
+                        <li>CS501/EE515/MATH439: Applied Probability (Professors: <a
+                                href="https://lums.edu.pk/lums_employee/516" target="_blank"
+                                class="has-text-link line-link" rel="noopener noreferrer">Dr. Mian Muhammad Awais</a>
+                            &amp; <a href="https://web.lums.edu.pk/~akarim/" target="_blank"
+                                class="has-text-link line-link" rel="noopener noreferrer">Dr. Asim Karim</a>) - Fall
+                            2025</li>
+                        <li>MATH230: Probability (Professor: <a href="https://lums.edu.pk/lums_employee/2614"
+                                target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. ljaz
+                                Haider Naqvi</a>) - Spring 2025</li>
+                        <li>MATH102: Calculus II (Professor: <a href="https://sites.google.com/view/waqasliazhar/home"
+                                target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Waqas Ali
+                                Azhar</a>) - Fall 2024</li>
+                        <li>MATH120: Linear Algebra with Differential Equations (Professor: <a
+                                href="https://sites.google.com/view/waqasliazhar/home" target="_blank"
+                                class="has-text-link line-link" rel="noopener noreferrer">Dr. Waqas Ali Azhar</a>) -
+                            Summer 2024</li>
+                        <li>MATH101: Calculus I (Professor: <a href="https://soe.lums.edu.pk/lums_employee/10279"
+                                target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Shehryar
+                                Sikander</a>) - Summer 2025</li>
+                        <li>MATH101: Calculus I (Professors: <a href="https://lums.edu.pk/lums_employee/4268"
+                                target="_blank" class="has-text-link line-link" rel="noopener noreferrer">Dr. Haniya
+                                Azam</a> &amp; <a href="https://habib.edu.pk/SSE/asgher-ali-ph-d/" target="_blank"
+                                class="has-text-link line-link" rel="noopener noreferrer">Dr. Asgher Ali</a>) - Fall
+                            2023</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <a class="title has-text-link is-4" id="education" href="#education"># Education/تعلیم</a>
+            <ul class="space content">
+                <li>Lahore University of Management Sciences - Bachelor's degree, Computer Science (Sep 2022 - May 2026)
+                </li>
+                <li>Islamia College Peshawar - High School - Math, Physics &amp; Chemistry (2020 - 2022)</li>
+            </ul>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <a class="title has-text-link is-4" id="awards" href="#awards"># Awards/ایوارڈز</a>
+            <ul class="space content">
+                <li>Rank 2 in the entire batch of 2022 - ICP (May 2022)</li>
+                <li>Best in Math, Physics &amp; Chemistry across the Board - FBISE (May 2020)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <a class="title has-text-link is-4"># Contact/رابطہ</a>
+            <form>
+                <div class="contact-row three">
+                    <div class="field">
+                        <label for="contact-name">Your Name</label>
+                        <input id="contact-name" type="text" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="field">
+                        <label for="contact-email">Your Email</label>
+                        <input id="contact-email" type="email" name="email" placeholder="Your Email">
+                    </div>
+                    <div class="field">
+                        <label for="contact-subject">Subject</label>
+                        <input id="contact-subject" type="text" name="subject" placeholder="Subject">
+                    </div>
+                </div>
+
+                <div class="contact-row message">
+                    <div class="field message-field">
+                        <label for="contact-message">Your Message</label>
+                        <textarea id="contact-message" name="message" placeholder="Your Message"></textarea>
+                    </div>
+                    <div class="field actions">
+                        <button type="submit">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme) {
+                // apply saved preference if it exists
+                document.documentElement.setAttribute("data-theme", savedTheme);
+            } else {
+                // use system preference
+                const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                const systemTheme = prefersDarkScheme ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", systemTheme);
+            }
+        });
+
+        // toggle between dark and light mode and save th choice
+        const themeToggleButton = document.getElementById("theme-toggle");
+        themeToggleButton.addEventListener("click", () => {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute("data-theme") || "light";
+            const newTheme = currentTheme === "light" ? "dark" : "light";
+            html.setAttribute("data-theme", newTheme);
+
+            // Save new theme preference
+            localStorage.setItem("theme", newTheme);
+        });
+    </script>
+</body>
+
+</html>
