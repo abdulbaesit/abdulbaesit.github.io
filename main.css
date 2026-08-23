@@ -24546,6 +24546,13 @@ print {
     padding-bottom: 1em;
 }
 
+.content ul.teaching-space {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /* vertically align material icons */
 .material-icons {
     vertical-align: middle;
