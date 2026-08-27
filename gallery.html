@@ -1,263 +1,48 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery • Basit</title>
-    <link rel="icon" type="image/x-icon" href="assets/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="/main.css" />
-    <style>
-        .gallery-controls {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .gallery-btn {
-            padding: 8px 12px;
-            border-radius: 6px;
-            background: transparent;
-            color: inherit;
-            cursor: pointer
-        }
-
-        /* Active filter state (green) */
-        .gallery-btn.active {
-            background: #16a34a;
-            /* green */
-            color: #ffffff;
-            box-shadow: 0 2px 6px rgba(22, 163, 74, 0.15);
-            border: none;
-        }
-
-        .gallery-btn:focus {
-            outline: 3px solid rgba(22, 163, 74, 0.15);
-            outline-offset: 2px;
-        }
-
-        .gallery-btn.primary {
-            border: none
-        }
-
-        .gallery-btn[disabled],
-        .gallery-btn.is-loaded {
-            opacity: 0.65;
-            cursor: not-allowed
-        }
-
-        .gallery-btn.is-loaded {
-            border: none
-        }
-
-        /* responsive small square thumbnails */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 10px;
-            align-items: stretch;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            aspect-ratio: 1/1;
-            display: block;
-        }
-
-        /* Ensure the inner container fills the framed square so child images can use 100% height reliably */
-        .gallery-item .gallery-inner {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-        }
-
-        .gallery-item img,
-        .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform .25s ease;
-        }
-
-        .gallery-item:hover img,
-        .gallery-item:hover video {
-            transform: scale(1.03);
-        }
-
-        .gallery-item .overlay {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 8px 10px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity .18s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Lightbox content should contain the entire image (no cropping) and keep controls above it */
-        .lightbox-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            width: auto;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-content img,
-        .lightbox-content video {
-            max-width: calc(100vw - 80px);
-            max-height: calc(100vh - 80px);
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .lightbox-close,
-        .lightbox-nav {
-            position: absolute;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 100001;
-        }
-
-        /* Make close a circular control and clearly visible */
-        .lightbox-close {
-            background: rgba(0, 0, 0, 0.35);
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            top: 12px;
-            right: 16px;
-            font-size: 20px;
-            line-height: 1;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            transition: background .15s ease, transform .08s ease;
-        }
-
-        .lightbox-close:hover,
-        .lightbox-close:focus {
-            background: rgba(0, 0, 0, 0.55);
-            transform: scale(1.03);
-        }
-
-        .gallery-item:hover .overlay {
-            opacity: 1
-        }
-
-        @media (max-width:1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-
-        @media (max-width:900px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width:560px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Lightbox styles */
-        #lightbox {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 99999;
-            padding: 20px;
-            /* keep some breathing room so very tall images don't touch edges */
-            box-sizing: border-box;
-            overflow: hidden;
-            width: 100vw;
-            height: 100vh;
-        }
-
-        #lightbox[aria-hidden="false"] {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-close {
-            top: 12px;
-            right: 16px;
-        }
-
-        .lightbox-nav.lightbox-prev {
-            left: 16px;
-        }
-
-        .lightbox-nav.lightbox-next {
-            right: 64px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gallery · Abdul Basit</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <nav class="navbar is-centered">
-        <div class="container">
-            <div class="navbar-brand">
-                <a href="index.html" class="navbar-item">Home</a>
-                <a href="/projects.html" class="navbar-item">Projects</a>
-                <a href="/gallery.html" class="navbar-item">Gallery</a>
-                <button>
-                    <span class="material-icons navbar-item theme-icon" id="theme-toggle">wb_sunny</span>
-                </button>
+<body data-variant="editorial">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="nav" aria-label="Primary">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="gallery.html" class="nav-link" aria-current="page">Gallery</a>
             </div>
-        </div>
-    </nav>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </nav>
+    </header>
 
-    <!-- Add animate-in so global section opacity:0 rule doesn't hide gallery -->
-    <section class="section animate-in">
-        <div class="container">
-            <h1 class="title has-text-link is-4"># Gallery / تصاویر</h1>
-            <p class="content is-small" style="margin-bottom: 1rem;">
-                Media is loaded only on demand. HEIC files may not preview in some browsers; use Safari or download.
-            </p>
+    <main id="main">
+        <section class="block block-top">
+            <div class="wrap">
+                <h1 class="block-title"><span>Gallery <span class="ur">/ تصاویر</span></span></h1>
+                <p class="gallery-note">Media is loaded only on demand. HEIC files may not preview in some browsers; use Safari or download.</p>
 
-            <div class="gallery-controls">
-                <button class="gallery-btn" data-filter="all">All</button>
-                <button class="gallery-btn" data-filter="image">Photos</button>
-                <button class="gallery-btn" data-filter="video">Videos</button>
-                <button id="load-media-btn" class="gallery-btn primary">Load Collection</button>
+                <div class="gallery-controls">
+                    <button class="gallery-btn" data-filter="all">All</button>
+                    <button class="gallery-btn" data-filter="image">Photos</button>
+                    <button class="gallery-btn" data-filter="video">Videos</button>
+                    <button id="load-media-btn" class="gallery-btn primary">Load Collection</button>
+                </div>
+
+                <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
             </div>
-
-            <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
         <button type="button" class="lightbox-close" aria-label="Close">✕</button>
@@ -266,31 +51,7 @@
         <div class="lightbox-content" id="lightbox-content"></div>
     </div>
 
-    <script>
-        // Theme sync (kept minimal and matching main.html behavior)
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedTheme = localStorage.getItem("theme");
-
-            if (savedTheme) {
-                document.documentElement.setAttribute("data-theme", savedTheme);
-            } else {
-                const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                const systemTheme = prefersDarkScheme ? "dark" : "light";
-                document.documentElement.setAttribute("data-theme", systemTheme);
-            }
-        });
-
-        const themeToggleButton = document.getElementById("theme-toggle");
-        if (themeToggleButton) {
-            themeToggleButton.addEventListener("click", () => {
-                const html = document.documentElement;
-                const currentTheme = html.getAttribute("data-theme") || "light";
-                const newTheme = currentTheme === "light" ? "dark" : "light";
-                html.setAttribute("data-theme", newTheme);
-                localStorage.setItem("theme", newTheme);
-            });
-        }
-    </script>
+    <script src="site.js"></script>
     <!-- HEIC to JPEG converter (WASM) for cross-browser previews -->
     <script src="https://unpkg.com/heic2any/dist/heic2any.min.js"></script>
     <script src="gallery.js"></script>
