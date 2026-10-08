@@ -462,3 +462,5 @@ a[data-icon="slides"]::before { --ic: url("data:image/svg+xml,%3Csvg xmlns='http
 }
 .hidden-dl:hover,
 .hidden-dl:focus-visible { opacity: 1; color: var(--accent); }
+
+.hidden-dl--manual { right: 56px; }
