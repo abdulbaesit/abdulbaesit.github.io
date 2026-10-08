@@ -442,25 +442,40 @@ a[data-icon="slides"]::before { --ic: url("data:image/svg+xml,%3Csvg xmlns='http
 }
 
 
-/* Hidden download button (index.html): fully transparent until hovered or keyboard-focused */
-.hidden-dl {
-    position: fixed;
-    right: 14px;
-    bottom: 14px;
-    width: 34px;
-    height: 34px;
+/* Hidden "Lectures" nav item: invisible until hovered (or focused / tapped) */
+.nav-hidden { position: relative; }
+.nav-hidden-trigger { opacity: 0; cursor: pointer; transition: opacity .2s ease; outline: none; }
+.nav-hidden:hover .nav-hidden-trigger,
+.nav-hidden:focus-within .nav-hidden-trigger,
+.nav-hidden.open .nav-hidden-trigger { opacity: 1; color: var(--accent); }
+.nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 150px;
+    margin-top: 4px;
+    padding: 6px 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: 50%;
+    flex-direction: column;
     background: var(--card-bg);
-    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     opacity: 0;
+    visibility: hidden;
     transition: opacity .2s ease;
-    z-index: 50;
+    z-index: 60;
 }
-.hidden-dl:hover,
-.hidden-dl:focus-visible { opacity: 1; color: var(--accent); }
-
-.hidden-dl--manual { right: 56px; }
+/* invisible bridge so the menu doesn't close while the pointer crosses the gap */
+.nav-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; }
+.nav-hidden:hover .nav-menu,
+.nav-hidden:focus-within .nav-menu,
+.nav-hidden.open .nav-menu { opacity: 1; visibility: visible; }
+.nav-menu a {
+    padding: 7px 14px;
+    font-size: .88rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.nav-menu a:hover,
+.nav-menu a:focus-visible { color: var(--accent); background: var(--accent-tint); }
