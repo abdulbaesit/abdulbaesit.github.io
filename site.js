@@ -23,15 +23,6 @@
             });
         }
 
-        const hidden = document.querySelector('.nav-hidden');
-        if (hidden) {
-            hidden.querySelector('.nav-hidden-trigger').addEventListener('click', (e) => {
-                e.stopPropagation();
-                hidden.classList.toggle('open');
-            });
-            document.addEventListener('click', () => hidden.classList.remove('open'));
-        }
-
         const yearEl = document.getElementById('year');
         if (yearEl) {
             yearEl.textContent = new Date().getFullYear();
